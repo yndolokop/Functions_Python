@@ -7,7 +7,7 @@ def simple_separator():
     print(x)
     return x
 print()
-print(simple_separator() == '**********')
+print(simple_separator() == '**********')  # True
 
 
 def long_separator(count):
