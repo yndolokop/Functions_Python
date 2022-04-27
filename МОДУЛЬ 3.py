@@ -43,7 +43,7 @@ def main_menu():
             break
         else:
             print('Неверный пункт меню')
-            return result
+    return result
 
 
 def bal(val):  # Функция будет принимать переменную balance и в случае повторного пополнения
