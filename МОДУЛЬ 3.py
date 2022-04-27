@@ -1,20 +1,23 @@
 
 history_item = []  #  список товаров
 history_price = []  # список цен
-# sum_price = []
 balance_sum = []  #  хранит суммы пополнений
 
 
 def main_menu():
+    global result
+    result = 0
     while True:
         print('1. пополнение счета')
         print('2. покупка')
         print('3. история покупок')
         print('4. выход')
         choice = input('Выберите пункт меню: ')
-
         if choice == '1':
             balance = int(input('Пополните счет. Введите сумму пополнения: '))
+            balance_sum.clear()
+            balance_sum.append(result)
+            print('Ваш баланс: ')
             result = bal(balance)
         elif choice == '2':
             price = int(input('Введите сумму покупки: '))
@@ -22,7 +25,9 @@ def main_menu():
                 print('Недостаточно денег. Пополните счет')
             elif price <= result:
                 item_name = input('Введите название товара: ')
-                shopping(result, price)
+                result = result - price  # и вычитать из нее сумму покупок перезаписав в result
+                print(balance_sum)
+                print('Остаток на счету: ', result)
                 history_item.append(item_name)
                 history_price.append(price)
                 print('Список покупок:\n', history_item)
@@ -34,7 +39,7 @@ def main_menu():
             break
         else:
             print('Неверный пункт меню')
-    return
+            return result
 
 
 def bal(val):  # Функция будет принимать переменную balance и в случае повторного пополнения
@@ -44,15 +49,6 @@ def bal(val):  # Функция будет принимать переменну
         new_balance += i  # суммировать их в переменную new_balance
     print(new_balance)
     return new_balance
-
-
-def shopping(val, price):  # функция будет принимать new_balance
-    ostatok = 0
-    sum_price.append(price)
-    ostatok = val - sum(sum_price)  #  и вычитать из нее сумму покупок записывая в ostatok
-    print('Ваш баланс: ', ostatok)
-    return ostatok
-
 
 
 def shopping_history():  #  функция печатает историю покупок из двух списков: названий товара и цен
